@@ -26,15 +26,13 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict():
     img = request.files['file']
-    img_path = os.path.join('static', img.filename)
-    img.save(img_path)
-    img_loaded = image.load_img(img_path, target_size=(224, 224))
+    img_loaded = image.load_img(img, target_size=(224, 224))
     img_array = image.img_to_array(img_loaded) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
     prediction = MODEL.predict(img_array)
     class_idx = np.argmax(prediction)
-    detected_class=classes[class_idx]
-    return f"Disease class predicted: {detected_class}"
+    detected_class = classes[class_idx]
+    return f"Disease class predicted: {detected_class}"
 
 
 if __name__ == '__main__':
