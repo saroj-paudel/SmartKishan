@@ -5,7 +5,7 @@ import numpy as np
 import os
 
 app = Flask(__name__)
-model = load_model('models/tomatoes.h5')
+# model = load_model('models/tomatoes.h5')
 
 
 classes=['Tomato_Bacterial_spot',
